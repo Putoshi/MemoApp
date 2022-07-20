@@ -1,0 +1,35 @@
+{
+  "name": "vite-react-boilerplate",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "npm run lint --fix",
+    "lint:format": "prettier --write './src/**/*.{js,jsx,ts,tsx,css,md,json}'"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
+    "@vitejs/plugin-react": "^2.0.0",
+    "eslint": "^8.20.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "nib": "^1.2.0",
+    "prettier": "^2.7.1",
+    "stylus": "^0.58.1",
+    "vite": "^3.0.0"
+  },
+  "volta": {
+    "node": "16.16.0",
+    "yarn": "1.22.19"
+  }
+}

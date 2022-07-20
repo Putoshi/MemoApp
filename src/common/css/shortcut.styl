@@ -1,0 +1,50 @@
+
+WH($width, $height)
+  width: $width
+  height: $height
+
+TL($top=0, $left=0)
+  top: $top
+  left: $left
+
+TR($top=0, $right=0)
+  top: $top
+  right: $right
+
+BL($bottom=0, $left=0)
+  bottom: $bottom
+  left: $left
+
+BR($bottom=0, $right=0)
+  bottom: $bottom
+  right: $right
+
+F($size=null, $spacing=0.1em)
+  if $size != null
+    font-size: $size
+  letter-spacing $spacing
+  font-feature-settings 'palt'
+
+TX($align=null, $lineHeight=null)
+  if $align != null
+    text-align: $align
+  if $lineHeight != null
+    line-height: $lineHeight
+
+REL($display=null)
+  position relative
+  if $display != null
+    display: $display
+
+ABS($display=null)
+  position absolute
+  if $display != null
+    display: $display
+
+D($display=null, $position=null, $content=null)
+  if $display != null
+    display: $display
+  if $position != null
+    position: $position
+  if $content != null
+    content: $content

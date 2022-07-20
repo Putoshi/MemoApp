@@ -1,0 +1,153 @@
+h1
+  color #fff
+
+body,h2,h3,p,span
+  color #090909
+
+::selection
+  background #ed5230
+  color #fff
+
+
+#MemoApp
+  min-height 1200px
+
+// グロナビ
+.GlobalNav
+  position fixed
+  z-index 100
+  top 0
+  left 0
+  width 100%
+  height 52px
+  background #f7a531 //f7a531 ed5230
+  border-bottom 1px solid #bdbdbd //ed5230
+  overflow hidden
+
+  .GlobalNav__title
+    padding 0px 12px
+    width 200px
+
+    h1
+      text-align left
+      font-size 21px
+      line-height 52px
+
+// サイドナビ
+.SideNav
+  position fixed
+  z-index 90
+  top 0
+  left 0
+  width 320px
+  min-height 100vh
+  padding-top 52px
+  border-right 1px solid #bdbdbd
+  background #f6f6f6
+
+.MemoList
+
+.MemoList__container
+
+
+
+
+
+
+.MemoThumbnail
+  height: 70px
+  border-bottom 1px solid #bdbdbd
+  cursor pointer
+
+  &:hover
+    background #fff
+
+.MemoThumbnail.selected
+  background #fff2e3
+
+.MemoThumbnail__container
+  padding 12px
+  box-sizing border-box
+  font-family: 'YakuHanJP'
+  font-style: normal
+  font-weight: 300
+  height 100%
+
+.MemoThumbnail__inner
+  position relative
+
+.MemoThumbnail__date
+  position absolute
+  top 0
+  left 0
+  font-weight: 100
+  font-size 11px
+  color #3a3a3a
+  padding-bottom 6px
+  text-align left
+
+.MemoThumbnail__title
+  position absolute
+  top 20px
+  left 0
+  width 260px
+
+
+  input
+    background transparent
+    color #090909
+    border none
+    width 100%
+    height 24px
+    text-align left
+    overflow hidden
+    white-space nowrap
+    font-weight 300
+    font-size 18px
+    text-overflow: ellipsis
+    padding 0
+
+  input:focus
+    outline 0
+    //border-color #e6b422
+    border 1px solid #e6b422
+    height 22px
+    width 256px
+    transform translateX(-2px)
+
+.MemoThumbnail__folder
+
+
+#root
+  width 100%
+  margin 0 auto
+  text-align center
+
+.logo
+  height 6em
+  padding 1.5em
+  will-change filter
+  &:hover
+    filter drop-shadow(0 0 2em #646cffaa)
+  &.react
+    &:hover
+      filter drop-shadow(0 0 2em #61dafbaa)
+
+@keyframes logo-spin
+  from
+    transform rotate(0deg)
+  to
+    transform rotate(360deg)
+
+
+@media (prefers-reduced-motion: no-preference)
+  a
+    &:nth-of-type(2)
+      .logo
+        animation logo-spin infinite 20s linear
+
+.card
+  padding 2em
+
+.read-the-docs
+  color #888
