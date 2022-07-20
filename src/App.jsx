@@ -1,4 +1,8 @@
 import {useState, useEffect, useMemo} from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addMemo, updateMemo, deleteMemo } from './module/store/MemoSlice.js';
+
+
 import reactLogo from './assets/react.svg';
 
 import {makeData} from './module/MemoData.js';
@@ -8,6 +12,12 @@ import './App.styl';
 
 const App = () => {
   const [data, setData] = useState(() => makeData(3));
+
+  const dispatch = useDispatch();
+  const memos = useSelector((state) => state.memoReducer.memos);
+  const memoItems = memos.map((value) =>
+    <li key={value.id}>{value.title}</li>
+  );
 
   const dragStart = (e, position) => {
     console.log('dragStart');
@@ -32,29 +42,6 @@ const App = () => {
     // setList(copyListItems);
   };
 
-  // const columns = useMemo(
-  //   () => [
-  //     {
-  //       header: 'Memo',
-  //       footer: props => props.column.id,
-  //       columns: [
-  //         {
-  //           accessorKey: 'createdAt',
-  //           footer: props => props.column.id,
-  //         },
-  //         {
-  //           accessorKey: 'title',
-  //           footer: props => props.column.id,
-  //         },
-  //         {
-  //           accessorKey: 'path',
-  //           footer: props => props.column.id,
-  //         }
-  //       ],
-  //     }
-  //   ],
-  //   []
-  // );
 
   return (
     <div id='MemoApp'>
@@ -66,7 +53,6 @@ const App = () => {
 
       <div className='SideNav'>
         <div className='SideNav__inner'>
-
           <div className='MemoList'>
             <div className='MemoList__container'>
 
@@ -105,6 +91,32 @@ const App = () => {
 
         </div>
       </div>
+
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <br/>
+      <ul>{memoItems}</ul>
+
+      <button onClick={() => dispatch(addMemo({
+        id: 'faubodufbao',
+        createdAt: '2022/07/23',
+        title: 'NEWNEW',
+        path: 'favorite',
+      }))}>ADD</button>
+
+
+      <button onClick={() => dispatch(updateMemo({
+        id: 'faubodufbao',
+        title: 'sssss',
+        path: 'favorite',
+      }))}>UPDATE</button>
+
+      <button onClick={() => dispatch(deleteMemo({
+        id: 'faubodufbao'
+      }))}>DELETE</button>
     </div>
   );
 };

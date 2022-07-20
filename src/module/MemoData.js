@@ -1,6 +1,6 @@
 const newPerson = () => {
   return {
-    createdAt: '2022/07/22', title: 'テストTESTテストTESTテストTEST', path: 'favorite'
+    id: 'faubodufbao', createdAt: '2022/07/22', title: 'テストTESTテストTESTテストTEST', path: 'favorite'
   };
 };
 const range = (len) => {

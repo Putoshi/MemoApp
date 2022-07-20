@@ -10,6 +10,7 @@ NPM 8.11.0
 
 - Framework
   - React.js
+  - Redux
 
 
 - CSS
