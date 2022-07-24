@@ -2,9 +2,10 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
-import {addMemo, sortMemo, selectMemo, updateMemo} from './MemoSlice.js';
+import {addMemo, sortMemo, selectMemo} from './MemoSlice.js';
 import MemoGroup from './MemoGroup.jsx';
 import FolderGroup from './FolderGroup.jsx';
+import {onDragOver, onDrop} from './DragEvent.js';
 import Const from './const/Const.js';
 
 const MemoList = () => {
@@ -34,26 +35,6 @@ const MemoList = () => {
       );
     }
   }, []);
-
-  const onDragOver = (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-  };
-  const onDrop = (e, folderId) => {
-    const memoId = e.dataTransfer.getData('text/plain');
-
-    // メモの新規追加
-    dispatch(
-      updateMemo({
-        id:memoId,
-        folder: folderId
-      }),
-    );
-
-    if (e.stopPropagation) {
-      e.stopPropagation();
-    }
-  };
 
 
   /**
@@ -90,7 +71,7 @@ const MemoList = () => {
           onDragOver(e);
         }}
         onDrop={(e) => {
-          onDrop(e, 'uncategorized');
+          onDrop(e, dispatch, 'uncategorized');
         }}
       >
         <MemoGroup

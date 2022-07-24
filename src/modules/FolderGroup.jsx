@@ -1,31 +1,12 @@
 import React from 'react';
 import Const from './const/Const.js';
 import MemoGroup from './MemoGroup.jsx';
-import {updateMemo} from './MemoSlice.js';
+import {onDragOver, onDrop} from './DragEvent.js';
 import {useDispatch} from 'react-redux';
 
 const FolderGroup = () => {
   const dispatch = useDispatch();
 
-  const onDragOver = (e) => {
-    e.stopPropagation();
-    e.preventDefault();
-  };
-  const onDrop = (e, folderId) => {
-    const memoId = e.dataTransfer.getData('text/plain');
-
-    // メモの新規追加
-    dispatch(
-      updateMemo({
-        id:memoId,
-        folder: folderId
-      }),
-    );
-
-    if (e.stopPropagation) {
-      e.stopPropagation();
-    }
-  };
   return (
     <div className={'FolderGroup'}>
       {
@@ -37,7 +18,7 @@ const FolderGroup = () => {
               onDragOver(e);
             }}
             onDrop={(e) => {
-              onDrop(e, folder.id);
+              onDrop(e, dispatch, folder.id);
             }}
           >
             <div
