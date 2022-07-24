@@ -35,6 +35,7 @@ module.exports = {
         extensions: ['.jsx', '.tsx'],
       }
     ],
+    "react/prop-types": "off",
     'no-use-before-define': 'off',
     'react/jsx-one-expression-per-line': 'off',
 

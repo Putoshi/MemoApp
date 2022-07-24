@@ -27,6 +27,7 @@ export const memoSlice = createSlice({
         id,
         createdAt,
         updatedAt,
+        folder: 'uncategorized',
         ...action.payload
       };
       state.memos.push(newMemo);
@@ -42,8 +43,14 @@ export const memoSlice = createSlice({
      */
     updateMemo: (state, action) => {
       const targetMemo = state.memos.find((memo) => memo.id === action.payload.id);
+      console.log(action.payload);
       targetMemo.updatedAt = new Date().getTime();
-      targetMemo.title = action.payload.title;
+      if (action.payload.title !== undefined) {
+        targetMemo.title = action.payload.title;
+      }
+      if (action.payload.folder !== undefined) {
+        targetMemo.folder = action.payload.folder;
+      }
     },
 
     /**
@@ -58,8 +65,7 @@ export const memoSlice = createSlice({
       state.memos = newMemos;
 
       // リスト先頭のメモを選択状態にする
-      console.log(state.memos[0].id);
-      state.selected = state.memos[0].id;
+      state.selected = (state.memos.length) ? state.memos[0].id : null;
     },
 
     /**
@@ -71,8 +77,8 @@ export const memoSlice = createSlice({
       let sortResult = state.memos;
       switch (action.payload.sortBy) {
       // updatedAtの昇順ソート
-      case Const.SortOrder.DATE_UP:
-        console.log(Const.SortOrder.DATE_UP);
+      case Const.SORT_ORDER.DATE_UP:
+        console.log(Const.SORT_ORDER.DATE_UP);
         sortResult = state.memos.sort((a, b) => {
           return (a.updatedAt < b.updatedAt) ? -1 : 1;
         });
@@ -80,7 +86,7 @@ export const memoSlice = createSlice({
 
 
       // updatedAtの降順ソート
-      case Const.SortOrder.DATE_DOWN:
+      case Const.SORT_ORDER.DATE_DOWN:
         sortResult = state.memos.sort((a, b) => {
           return (a.updatedAt > b.updatedAt) ? -1 : 1;
         });
