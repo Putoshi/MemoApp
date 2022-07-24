@@ -6,12 +6,12 @@ import {save, load} from 'redux-localstorage-simple';
 
 const LOCALSTORAGE_KEY = 'my_memo_app';
 
-// rootReducer の準備
+// rootReducerの準備
 const rootReducer = combineReducers({
   memoReducer: memoSlice
 });
 
-// setup 関数を用意してエクスポートする。
+// setup関数
 export const setupStore = () => {
   const middlewares = (getDefaultMiddleware) => getDefaultMiddleware()
     .concat(save({ namespace: LOCALSTORAGE_KEY }))
@@ -20,23 +20,8 @@ export const setupStore = () => {
   return configureStore({
     reducer: rootReducer,
     middleware: middlewares,
-    preloadedState: load(),
+    preloadedState: load({ namespace: LOCALSTORAGE_KEY }),
   });
 };
 
-
 export const store = setupStore();
-
-store.subscribe(() => {
-  console.log('subscribe');
-});
-
-
-// export const store = configureStore({
-//   reducer: {
-//     memoReducer,
-//   },
-//   preloadedState: load(),
-//   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(save({ namespace: LOCALSTORAGE_KEY })),
-// });
-

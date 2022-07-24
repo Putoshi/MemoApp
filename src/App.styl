@@ -40,10 +40,12 @@ body,h2,h3,p,span
   top 0
   left 0
   width 320px
+  height 100vh
   min-height 100vh
   padding-top 52px
   border-right 1px solid #bdbdbd
-  background #f6f6f6
+  background #b2b2b2
+  overflow-y auto
 
 .MemoList
 
@@ -55,26 +57,37 @@ body,h2,h3,p,span
 
 
 .MemoThumbnail
-  height: 70px
+  //border-bottom 1px solid #bdbdbd
+
+.MemoList__creatNewBtn
+  width 100%
+  height 40px
+  border none
+  background #ff6161
+  border-radius 0
   border-bottom 1px solid #bdbdbd
-  cursor pointer
-
-  &:hover
-    background #fff
-
-.MemoThumbnail.selected
-  background #fff2e3
 
 .MemoThumbnail__container
+  height: 70px
   padding 12px
   box-sizing border-box
   font-family: 'YakuHanJP'
   font-style: normal
   font-weight: 300
-  height 100%
+  //height 100%
+  cursor pointer
+  border-bottom 1px solid #bdbdbd
+  background #fff0e2
+
+  &:hover
+    background #fff
+
+.MemoThumbnail__container.selected
+  background #fff2e3
 
 .MemoThumbnail__inner
   position relative
+  height 100%
 
 .MemoThumbnail__date
   position absolute
@@ -91,6 +104,15 @@ body,h2,h3,p,span
   top 20px
   left 0
   width 260px
+
+  .MemoThumbnail__title__icon
+    position absolute
+    height 100%
+    display inline-flex
+    align-items center
+
+    &:hover
+      opacity 0.6
 
 
   input

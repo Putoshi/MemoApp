@@ -20,6 +20,7 @@ NPM 8.11.0
 - CSS
   - Stylus
   - nib
+  - FontAwesome
 
 
 - Build Tool
