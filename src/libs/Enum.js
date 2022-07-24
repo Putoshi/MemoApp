@@ -16,17 +16,6 @@ export default class Enum {
   }
 
   /**
-   * 繰り返し処理する
-   * @param {array} callback コールバック
-   */
-  forEach(callback) {
-    const {length} = this.enums;
-    for (let i = 0; i < length; ++i) {
-      callback(this.enums[i]);
-    }
-  }
-
-  /**
    * enumを追加する
    * @param {object} e enumの追加情報
    */
@@ -50,17 +39,17 @@ export default class Enum {
    * @return {object} 設定した値
    */
   getByValue(field, value) {
-    let lookup = this._lookups[field];
+    let lookup = this.lookups[field];
     if (lookup) {
       return lookup[value];
     }
-    this._lookups[field] = (lookup = {});
-    let k = this._enums.length - 1;
+    this.lookups[field] = (lookup = {});
+    let k = this.enums.length - 1;
     for (; k >= 0; --k) {
       const m = this._enums[k];
       const j = m[field];
       lookup[j] = m;
-      if (j == value) {
+      if (j === value) {
         return m;
       }
     }

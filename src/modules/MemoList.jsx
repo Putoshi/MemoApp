@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashCan, faPlus } from '@fortawesome/free-solid-svg-icons';
-import {addMemo, updateMemo, deleteMemo, sortMemo} from './MemoSlice.js';
+import {addMemo, updateMemo, deleteMemo, sortMemo, selectMemo} from './MemoSlice.js';
 import Datetime from '../libs/date/Datetime.js';
 import Const from './const/Const.js';
 // import { useState, useEffect, useMemo } from 'react';
@@ -10,37 +10,65 @@ import Const from './const/Const.js';
 const MemoList = () => {
   const dispatch = useDispatch();
   const memos = useSelector((state) => state.memoReducer.memos);
+  const selectedListID = useSelector((state) => state.memoReducer.selected);
 
   // ソートオーダーの設定
   const sortBy = Const.SortOrder.DATE_DOWN;
 
-  // 初期化時にソートする
+
   useEffect(() => {
+    // 初期化時にソートする
     dispatch(
       sortMemo({
         sortBy
       }),
     );
+
+    // 初期化時に選択状態にあるリストを確認して、存在しない場合は先頭のリストを選択
+    const selectedMemo = memos.find((memo) => memo.id === selectedListID);
+    if (!selectedMemo) {
+      dispatch(
+        selectMemo({
+          id: memos[0].id
+        })
+      );
+    }
   }, []);
 
   /**
-   * リストの削除ボタンクリック
-   * @param id
+   * リスト選択時ハンドラー
+   * @param id 選択したリストID
    */
-  const onClickDeleteBtn = (id) => {
-    console.log('onClickDeleteBtn');
+  const onClickList = (id) => {
     dispatch(
-      deleteMemo({
+      selectMemo({
         id
       }),
     );
   };
 
   /**
+   * リストの削除ボタンクリック
+   * @param id 削除するリストID
+   */
+  const onClickDeleteBtn = (e, id) => {
+    console.log('onClickDeleteBtn');
+    dispatch(
+      deleteMemo({
+        id
+      }),
+    );
+
+    // リストの選択イベントも走ってしまう為、イベントのバブリング停止する
+    e.stopPropagation();
+  };
+
+  /**
    * リストのタイトル編集ハンドラー
-   * @param id
+   * @param id タイトル更新するリストID
    */
   const onChangeTitle = (e, id) => {
+    // メモの新規追加
     dispatch(
       updateMemo({
         id,
@@ -48,6 +76,7 @@ const MemoList = () => {
       }),
     );
 
+    // ソート
     dispatch(
       sortMemo({
         sortBy
@@ -55,29 +84,32 @@ const MemoList = () => {
     );
   };
 
-  const formatDateString = (createdAt) => {
-    return new Datetime(new Date(createdAt)).toString(Datetime.CALENDAR);
+  /**
+   * UnixTimeから日付フォーマットに変換
+   * @param updatedAt UnixTime
+   * @returns {*} #{year}/#{month}/#{date} 形式のString
+   */
+  const formatDateString = (updatedAt) => {
+    return new Datetime(new Date(updatedAt)).toString(Datetime.CALENDAR);
   };
 
   /**
-   * 新たなメモの作成
+   * メモの新規作成ボタンハンドラー
    */
   const onClickCreateNewBtn = () => {
+    // メモの新規追加
     dispatch(
       addMemo({
         title: ''
       }),
     );
+    // ソート
     dispatch(
       sortMemo({
         sortBy
       }),
     );
   };
-
-  // console.log(memos);
-
-  // const memoItems = memos.map((value) => <li key={value.id}>{value.title}</li>);
 
   const dragStart = (e, position) => {
     console.log('dragStart');
@@ -118,12 +150,13 @@ const MemoList = () => {
           memos.map((memo, index) => (
             <div key={memo.id}
               className='MemoThumbnail'
+              onClick={(e) => onClickList(memo.id)}
               onDragStart={(e) => dragStart(e)}
               onDragEnter={(e) => dragEnter(e)}
               onDragEnd={drop}
               draggable
             >
-              <div className='MemoThumbnail__container'>
+              <div className={(selectedListID === memo.id) ? 'MemoThumbnail__container selected' : 'MemoThumbnail__container'}>
                 <div className='MemoThumbnail__inner'>
                   <div className='MemoThumbnail__date'>{formatDateString(memo.updatedAt)}</div>
 
@@ -132,14 +165,10 @@ const MemoList = () => {
                       type='text'
                       maxLength={30}
                       defaultValue={memo.title}
-                      // onChange={e => {
-                      //   const page = e.target.value ? Number(e.target.value) - 1 : 0
-                      //   table.setPageIndex(page)
-                      // }}
                       onChange={(e) => onChangeTitle(e, memo.id)}
                       className=''
                     />
-                    <i className='MemoThumbnail__title__icon' onClick={() => onClickDeleteBtn(memo.id)}>
+                    <i className='MemoThumbnail__title__icon' onClick={(e) => onClickDeleteBtn(e, memo.id)}>
                       <FontAwesomeIcon icon={faTrashCan} />
                     </i>
 
