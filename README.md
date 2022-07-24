@@ -11,6 +11,10 @@ NPM 8.11.0
 - Framework
   - React.js
   - Redux
+  - redux-localstorage-simple
+  - redux-logger
+
+
 
 
 - CSS

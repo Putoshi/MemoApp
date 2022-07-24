@@ -207,12 +207,12 @@ module.exports = {
     "implicit-arrow-linebreak": ["error", "beside"],
     "indent": ["error", 2],
     "jsx-quotes": ["error", "prefer-single"],
-    "key-spacing": ["error", {
-      "beforeColon": false,
-      "afterColon": true,
-      "mode": "minimum",
-      "align": "colon"
-    }],
+    // "key-spacing": ["error", {
+    //   "beforeColon": false,
+    //   "afterColon": true,
+    //   "mode": "minimum",
+    //   "align": "colon"
+    // }],
     "keyword-spacing": ["error"],
     "line-comment-position": ["off"],
     "linebreak-style": ["error", "unix"],
