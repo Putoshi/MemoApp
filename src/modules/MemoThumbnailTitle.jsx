@@ -2,7 +2,7 @@ import React, {useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {updateMemo, sortMemo, selectMemo} from './store/MemoSlice.js';
 import Datetime from '../libs/date/Datetime.js';
-import Const from './const/Const.js';
+import Const from '../const/Const.js';
 import DeleteBtn from './DeleteBtn.jsx';
 
 const MemoThumbnailTitle = (prop) => {

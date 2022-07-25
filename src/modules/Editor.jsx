@@ -1,6 +1,6 @@
 import React, {useRef, useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import Const from './const/Const.js';
+import Const from '../const/Const.js';
 import Datetime from '../libs/date/Datetime.js';
 import {updateMemo, sortMemo} from './store/MemoSlice.js';
 import EditorMenu from './EditorMenu.jsx';

@@ -3,7 +3,7 @@ import {useDispatch} from 'react-redux';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faXmark} from '@fortawesome/free-solid-svg-icons';
 import {updateMemo} from './store/MemoSlice.js';
-import Const from './const/Const.js';
+import Const from '../const/Const.js';
 
 /**
  * 編集画面メニューバー内のフォルダー解除ボタン

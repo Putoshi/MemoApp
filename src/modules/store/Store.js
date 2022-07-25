@@ -1,6 +1,6 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
 import logger from 'redux-logger';
-import Const from '../const/Const.js';
+import Const from '../../const/Const.js';
 import memoSlice from './MemoSlice.js';
 import {save, load} from 'redux-localstorage-simple';
 

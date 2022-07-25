@@ -1,5 +1,5 @@
 import React from 'react';
-import Const from './const/Const.js';
+import Const from '../const/Const.js';
 import MemoGroup from './MemoGroup.jsx';
 import {onDragOver, onDrop} from './DragEvent.js';
 import {useDispatch} from 'react-redux';

@@ -5,7 +5,7 @@ import MemoGroup from './MemoGroup.jsx';
 import CreateNewBtn from './CreateNewBtn.jsx';
 import FolderGroup from './FolderGroup.jsx';
 import {onDragOver, onDrop} from './DragEvent.js';
-import Const from './const/Const.js';
+import Const from '../const/Const.js';
 
 /**
  * SideNav内のMemoGroup、FolderGroupなどを内包するブロック

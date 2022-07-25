@@ -1,5 +1,5 @@
 import {updateMemo, selectMemo, sortMemo} from './store/MemoSlice.js';
-import Const from './const/Const.js';
+import Const from '../const/Const.js';
 
 /**
  * SideNavのメモリストをドラッグした時のイベントハンドラー

@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
 import Random from '../../libs/Random.js';
-import Const from '../const/Const.js';
+import Const from '../../const/Const.js';
 
 export const memoSlice = createSlice({
   name: 'memo',

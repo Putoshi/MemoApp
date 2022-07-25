@@ -1,4 +1,4 @@
-import {defineEnum} from '../../libs/Enum.js';
+import {defineEnum} from '../libs/Enum.js';
 
 /**
  * ソートオーダーの列挙型

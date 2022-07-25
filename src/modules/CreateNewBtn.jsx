@@ -3,7 +3,7 @@ import {useDispatch} from 'react-redux';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
 import {addMemo, sortMemo} from './store/MemoSlice.js';
-import Const from './const/Const.js';
+import Const from '../const/Const.js';
 import RefBank from './RefBank.js';
 
 /**
