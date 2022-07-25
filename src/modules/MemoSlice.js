@@ -28,6 +28,7 @@ export const memoSlice = createSlice({
         createdAt,
         updatedAt,
         folder: 'uncategorized',
+        data: '',
         ...action.payload
       };
       state.memos.push(newMemo);
@@ -43,13 +44,15 @@ export const memoSlice = createSlice({
      */
     updateMemo: (state, action) => {
       const targetMemo = state.memos.find((memo) => memo.id === action.payload.id);
-      console.log(action.payload);
       targetMemo.updatedAt = new Date().getTime();
       if (action.payload.title !== undefined) {
         targetMemo.title = action.payload.title;
       }
       if (action.payload.folder !== undefined) {
         targetMemo.folder = action.payload.folder;
+      }
+      if (action.payload.data !== undefined) {
+        targetMemo.data = action.payload.data;
       }
     },
 

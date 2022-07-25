@@ -57,32 +57,35 @@ const MemoList = () => {
 
   return (
     <div className='MemoList'>
-      <div>
-        <button className='MemoList__creatNewBtn'
-          onClick={() => onClickCreateNewBtn()}
+
+      <div className='Frame'>
+        <div className='Frame__label'>
+          <button className='MemoList__createNewBtn'
+            onClick={() => onClickCreateNewBtn()}
+          >
+            <FontAwesomeIcon icon={faPlus}/>
+          </button>
+        </div>
+
+        <div
+          className={'Folder'}
+          onDragOver={(e) => {
+            onDragOver(e);
+          }}
+          onDrop={(e) => {
+            onDrop(e, dispatch, 'uncategorized');
+          }}
         >
-          <FontAwesomeIcon icon={faPlus}/>
-        </button>
-      </div>
+          <MemoGroup
+            folderName={'uncategorized'}
+          />
+        </div>
 
-      <div
-        className={'Folder'}
-        onDragOver={(e) => {
-          onDragOver(e);
-        }}
-        onDrop={(e) => {
-          onDrop(e, dispatch, 'uncategorized');
-        }}
-      >
-        <MemoGroup
-          folderName={'uncategorized'}
-        />
       </div>
 
 
       <div>
-        <FolderGroup>
-        </FolderGroup>
+        <FolderGroup />
       </div>
 
 

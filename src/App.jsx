@@ -7,6 +7,7 @@ import {updateMemo} from './modules/MemoSlice.js';
 // import reactLogo from './assets/react.svg';
 
 import MemoList from './modules/MemoList.jsx';
+import Editor from './modules/Editor.jsx';
 
 import './App.styl';
 
@@ -31,31 +32,20 @@ const App = () => {
 
   return (
     <div id='MemoApp'>
-      <div className='GlobalNav'>
-        <div className='GlobalNav__title'>
-          <h1>Memo App</h1>
-        </div>
-      </div>
-
       <div className='SideNav'>
+        <h1>Memo App 📝</h1>
         <div className='SideNav__inner'>
           <MemoList></MemoList>
         </div>
       </div>
 
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
+      {/* <button*/}
+      {/*  onClick={() => onClickUpdateMemoBtn()}*/}
+      {/* >*/}
+      {/*  UPDATE*/}
+      {/* </button>*/}
 
-
-      <button
-        onClick={() => onClickUpdateMemoBtn()}
-      >
-        UPDATE
-      </button>
+      <Editor />
 
     </div>
   );

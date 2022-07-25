@@ -6,22 +6,26 @@ const ConstParam = {
     {
       id:'uncategorized',
       name: 'UNCATEGORIZED',
-      lavelColor: '#68e5b1',
+      labelColor1: '#dcdcdc',
+      labelColor2: '#dcdcdc',
     },
     {
       id:'favorite',
       name: 'FAVORITE',
-      lavelColor: '#e59a68',
+      labelColor1: '#68e5b1',
+      labelColor2: '#4ed09a',
     },
     {
       id:'wip',
       name: 'WIP',
-      lavelColor: '#dcc864',
+      labelColor1: '#ffdd53',
+      labelColor2: '#f3cf42',
     },
     {
       id:'archive',
       name: 'Archive',
-      lavelColor: '#c6dc64',
+      labelColor1: '#def579',
+      labelColor2: '#e0f194',
     },
   ]
 };

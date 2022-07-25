@@ -12,7 +12,7 @@ const FolderGroup = () => {
       {
         Const.FOLDER_GROUP.filter((folder) => folder.id !== 'uncategorized').map((folder) => (
           <div
-            className={'Folder'}
+            className={'Folder Frame'}
             key={folder.id}
             onDragOver={(e) => {
               onDragOver(e);
@@ -23,9 +23,9 @@ const FolderGroup = () => {
           >
             <div
               className={'FolderLabel'}
-              style={{backgroundColor: folder.lavelColor}}
+              style={{background: `linear-gradient(${folder.labelColor1}, ${folder.labelColor2})`}}
             >
-              <div className={'FolderLabel__inner'}>{folder.name}</div>
+              <div className={'FolderLabel__inner'}>{folder.name} 📂</div>
             </div>
             <MemoGroup folderName={folder.id}></MemoGroup>
 

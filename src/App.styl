@@ -1,57 +1,67 @@
-h1
-  color #fff
-
-body,h2,h3,p,span
+body,h1,h2,h3,p,span
   color #090909
+
 
 ::selection
   background #ed5230
   color #fff
 
 
+#root
+  padding 30px 0
+
+
+input,button,textarea
+  outline none
+  border none
+  &:focus,&:selected,&:hover
+    outline none
+    border none
+
 #MemoApp
-  min-height 1200px
-
-// グロナビ
-.GlobalNav
-  position fixed
-  z-index 100
-  top 0
-  left 0
-  width 100%
-  height 52px
-  background #f7a531 //f7a531 ed5230
-  border-bottom 1px solid #bdbdbd //ed5230
-  overflow hidden
-
-  .GlobalNav__title
-    padding 0px 12px
-    width 200px
-
-    h1
-      text-align left
-      font-size 21px
-      line-height 52px
-      font-weight bold
-      user-select none
+  position relative
+  margin 0 auto
+  width 90%
+  max-width 1400px
+  min-width 1000px
+  min-height 700px
+  background #f7f7f7
+  box-shadow 0 10px 25px 0 rgba(0, 0, 0, .2)
+  display flex
+  justify-content: flex-start
 
 // サイドナビ
 .SideNav
-  position fixed
-  z-index 90
-  top 0
-  left 0
-  width 320px
-  height 100vh
-  min-height 100vh
-  padding-top 52px
+  //width 320px
+  width 30%
   border-right 1px solid #bdbdbd
-  background #b2b2b2
+  background #fff
   overflow-y auto
+  flex-grow 1
+
+  h1
+    color #000
+    font-size 28px
+    line-height 72px
+    font-weight 400
+    text-align left
+    padding-left 20px
 
   .SideNav__inner
     padding-bottom 52px
 
+.Frame
+  border-radius 12px
+  border solid 1px #dcdcdc
+  background #e0e0e0
+  margin 0 12px 20px
+  box-shadow 0 4px 12px 0 rgba(0, 0, 0, .2)
+  overflow hidden
+
+  .Frame__label
+    position relative
+    height 40px
+    padding 4px
 
 .MemoThumbnail
   cursor pointer
@@ -59,25 +69,34 @@ body,h2,h3,p,span
   background #fff0e2
 
   &:hover
-    background #fff
+    background #fffbf6
 
   &:last-child
     border-bottom none
 
-.MemoList__creatNewBtn
-  width 100%
+.MemoList__createNewBtn
+  float right
+  display block
+  box-sizing content-box
+  border-radius 20px
+  padding 0
+  width 40px
   height 40px
-  border none
+  border none !important
+  outline none !important
   background #ff6161
-  border-radius 0
-  border-bottom 1px solid #bdbdbd
-  outline none
+  ////border-radius 0
+  //border-bottom 1px solid #bdbdbd
+
+  //&:active
+  //  outline none
+  //  border none
 
   &:hover
     background #ff7575
-    outline none
-    border none
-    border-bottom 1px solid #bdbdbd
+    //outline none
+    //border none
+    //border-bottom 1px solid #bdbdbd
 
 .MemoThumbnail__container
   height: 70px
@@ -93,7 +112,7 @@ body,h2,h3,p,span
 
 
 .MemoThumbnail__container.selected
-  background #fffefd
+  background #fffbf6
 
 .MemoThumbnail__inner
   position relative
@@ -113,13 +132,17 @@ body,h2,h3,p,span
   position absolute
   top 20px
   left 0
-  width 260px
+  width 100%
+  padding-right 20px
+  box-sizing border-box
 
   .MemoThumbnail__title__icon
     position absolute
     height 100%
     display inline-flex
     align-items center
+    color #2c2c2c
+    margin-left 4px
 
     &:hover
       opacity 0.6
@@ -138,35 +161,86 @@ body,h2,h3,p,span
     font-size 18px
     text-overflow: ellipsis
     padding 0
+    box-sizing border-box
 
   input:focus
     outline 0
     //border-color #e6b422
     border 1px solid #e6b422
-    height 22px
-    width 256px
-    transform translateX(-2px)
+    //height 22px
+    //width 256px
+    //transform translateX(-2px)
 
 //.MemoThumbnail__folder
-.Folder
-  min-height 51px
+//.Folder
+//  min-height 51px
 
-.FolderGroup
-  border-top 1px solid #141414
 
 .FolderLabel
   width 100%
   height 50px
-  border-bottom 1px solid #141414
+  //border-bottom 1px solid #141414
   display flex
   align-items center
   text-align center
+  color #202020
 
   .FolderLabel__inner
     width 100%
     font-weight bold
     user-select none
 
+
+
+
+
+
+
+.Editor
+  width 70%
+
+
+  .Editor__wrapper
+    padding 30px 60px
+    height 100%
+    box-sizing border-box
+
+  .Editor__inner
+    height 100%
+    display flex
+
+    flex-direction column
+
+  .Editor__title
+    width 100%
+    input
+      width 100%
+      height 100%
+      line-height 60px
+      font-size 32px
+      letter-spacing 2px
+      text-align left
+      background none
+      color #090909
+
+  .Editor__body
+    width 100%
+    height 100%
+    padding-top 12px
+
+    textarea
+      resize: none
+      display table-cell
+      vertical-align top
+      width 100%
+      height 100%
+      line-height 46px
+      font-size 24px
+      letter-spacing 2px
+      text-align left
+      background none
+      color #090909
+      word-wrap break-word
 
 #root
   width 100%
