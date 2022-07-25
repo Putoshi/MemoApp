@@ -28,7 +28,7 @@ export default class Enum {
    * @param {string} name 名前
    * @return {string} 名前文字列
    */
-  getByName(e) {
+  getByName(name) {
     return this[name];
   }
 
@@ -46,7 +46,7 @@ export default class Enum {
     this.lookups[field] = (lookup = {});
     let k = this.enums.length - 1;
     for (; k >= 0; --k) {
-      const m = this._enums[k];
+      const m = this.enums[k];
       const j = m[field];
       lookup[j] = m;
       if (j === value) {

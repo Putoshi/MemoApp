@@ -86,6 +86,7 @@ export const memoSlice = createSlice({
      */
     sortMemo: (state, action) => {
       let sortResult = state.memos;
+
       switch (action.payload.sortBy) {
       // updatedAtの昇順ソート
       case Const.SORT_ORDER.DATE_UP:

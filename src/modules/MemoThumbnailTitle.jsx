@@ -18,8 +18,8 @@ const MemoThumbnailTitle = (prop) => {
   const selectedMemoID = useSelector((state) => state.memoReducer.selected);
 
   // メモをIDで索引
-  const getMemoById = (id, _memos) => {
-    return _memos.find((memo) => memo.id === id);
+  const getMemoById = (_id, _memos) => {
+    return _memos.find((memo) => memo.id === _id);
   };
 
   // 編集画面のタイトルInputRef
@@ -28,8 +28,9 @@ const MemoThumbnailTitle = (prop) => {
   useSelector((state) => {
     // メモが編集画面で更新された場合にリストの方のタイトルも更新する
     if (id === selectedMemoID && state.memoReducer.memos.length > 0) {
-      if (titleInputElm.current) {
-        titleInputElm.current.value = getMemoById(selectedMemoID, state.memoReducer.memos).title;
+      const targetMemo = getMemoById(selectedMemoID, state.memoReducer.memos);
+      if (titleInputElm.current && targetMemo) {
+        titleInputElm.current.value = targetMemo.title;
       }
     }
     return state.memoReducer.memos;
@@ -40,12 +41,12 @@ const MemoThumbnailTitle = (prop) => {
 
   /**
    * リスト選択時ハンドラー
-   * @param id 選択したリストID
+   * @param _id 選択したリストID
    */
-  const onClickList = (id) => {
+  const onClickList = (_id) => {
     dispatch(
       selectMemo({
-        id
+        id:_id
       }),
     );
   };
@@ -53,13 +54,13 @@ const MemoThumbnailTitle = (prop) => {
 
   /**
    * リストのタイトル編集ハンドラー
-   * @param id タイトル更新するリストID
+   * @param _id タイトル更新するリストID
    */
-  const onChangeTitle = (e, id) => {
+  const onChangeTitle = (e, _id) => {
     // メモのタイトル更新
     dispatch(
       updateMemo({
-        id,
+        id:_id,
         title: e.target.value,
       }),
     );
@@ -74,21 +75,21 @@ const MemoThumbnailTitle = (prop) => {
 
   /**
    * UnixTimeから日付フォーマットに変換
-   * @param updatedAt UnixTime
+   * @param _updatedAt UnixTime
    * @returns {*} #{year}/#{month}/#{date} 形式のString
    */
-  const formatDateString = (updatedAt) => {
-    return new Datetime(new Date(updatedAt)).toString(Datetime.CALENDAR);
+  const formatDateString = (_updatedAt) => {
+    return new Datetime(new Date(_updatedAt)).toString(Datetime.CALENDAR);
   };
 
   /**
    * メモリストのドラッグ開始ハンドラー
    * @param e イベント
-   * @param id メモのID
+   * @param _id メモのID
    */
-  const onDragStart = (e, id) => {
+  const onDragStart = (e, _id) => {
     e.dataTransfer.effectAllowed = 'move';
-    e.dataTransfer.setData('text/plain', id);
+    e.dataTransfer.setData('text/plain', _id);
   };
 
   return (

@@ -39,7 +39,7 @@ const MemoList = () => {
         })
       );
     }
-  }, []);
+  }, [dispatch, memos, selectedMemoID, sortBy]);
 
   return (
     <div className='MemoList'>

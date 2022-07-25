@@ -21,12 +21,12 @@ const FolderRemoveBtn = (prop) => {
 
   /**
    * リストの削除ボタンハンドラー
-   * @param id 削除するリストID
+   * @param _id 削除するリストID
    */
-  const onClickFolderRemoveBtn = (e, id) => {
+  const onClickFolderRemoveBtn = (e, _id) => {
     dispatch(
       updateMemo({
-        id,
+        id:_id,
         folder: 'uncategorized'
       }),
     );
@@ -36,11 +36,11 @@ const FolderRemoveBtn = (prop) => {
 
   /**
    * フォルダの表示名をIDで索引
-   * @param id メモのID
+   * @param _id メモのID
    * @returns {*} 表示名
    */
-  const getFolderNameById = (id) => {
-    return Const.FOLDER_GROUP.find((folder) => folder.id === id).name;
+  const getFolderNameById = (_id) => {
+    return Const.FOLDER_GROUP.find((folder) => folder.id === _id).name;
   };
 
   /**
@@ -48,8 +48,8 @@ const FolderRemoveBtn = (prop) => {
    * @param id メモのID
    * @returns {{labelColor2: *, labelColor1: *}} ラベル色をObjで返却
    */
-  const getFolderColorById = (id) => {
-    const targetFolderData = Const.FOLDER_GROUP.find((folder) => folder.id === id);
+  const getFolderColorById = (_id) => {
+    const targetFolderData = Const.FOLDER_GROUP.find((folder) => folder.id === _id);
     return {
       labelColor1: targetFolderData.labelColor1,
       labelColor2: targetFolderData.labelColor2
