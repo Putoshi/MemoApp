@@ -20,7 +20,7 @@ const EditorMenu = (prop) => {
         <DeleteBtn id={prop.id}/>
       </div>
       <div className='Editor__menu__btn'>
-        {(prop.folder !== 'uncategorized') && <FolderRemoveBtn id={id} folderId={folderId}/> }
+        {(folderId !== 'uncategorized') && <FolderRemoveBtn id={id} folderId={folderId}/> }
       </div>
     </div>
   );

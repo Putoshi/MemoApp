@@ -35,9 +35,8 @@ const Editor = () => {
 
   const memos = useSelector((state) => {
     if (state.memoReducer.memos.length > 0) {
-      const targetMemo = getMemoById(selectedMemoID, state.memoReducer.memos);
       if (titleInputElm.current) {
-        titleInputElm.current.value = targetMemo.title;
+        titleInputElm.current.value = getMemoById(selectedMemoID, state.memoReducer.memos).title;
       }
     }
     return state.memoReducer.memos;

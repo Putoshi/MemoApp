@@ -29,7 +29,7 @@ const MemoThumbnailTitle = (prop) => {
     // メモが編集画面で更新された場合にリストの方のタイトルも更新する
     if (id === selectedMemoID && state.memoReducer.memos.length > 0) {
       if (titleInputElm.current) {
-        titleInputElm.current.value = getMemoById(selectedMemoID, state.memoReducer.memos);
+        titleInputElm.current.value = getMemoById(selectedMemoID, state.memoReducer.memos).title;
       }
     }
     return state.memoReducer.memos;
