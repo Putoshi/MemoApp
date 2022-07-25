@@ -15,9 +15,14 @@ export const memoSlice = createSlice({
      * @param action Action
      */
     addMemo: (state, action) => {
-      const id = Random.getRandomUid();
-      const createdAt = new Date().getTime();
-      const updatedAt = new Date().getTime();
+      /**
+       * @todo 取り急ぎの対応でメモIDを仮でUID+Unix時間で生成してるが、重複しない仕組みを
+       */
+      const unixTime = new Date().getTime();
+      const id = `${Random.getRandomUid()}_${unixTime}`;
+      const createdAt = unixTime;
+      const updatedAt = unixTime;
+
       // バリデーション入れる
       const newMemo = {
         id,
