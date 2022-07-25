@@ -14,7 +14,7 @@ export const DragEvent = {
       dispatch(
         updateMemo({
           id: memoId,
-          folder: folderId
+          folder: folderId,
         })
       );
 
