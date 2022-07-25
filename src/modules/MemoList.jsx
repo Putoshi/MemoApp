@@ -1,20 +1,26 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {addMemo, sortMemo, selectMemo} from './store/MemoSlice.js';
+import {sortMemo, selectMemo} from './store/MemoSlice.js';
 import MemoGroup from './MemoGroup.jsx';
 import CreateNewBtn from './CreateNewBtn.jsx';
 import FolderGroup from './FolderGroup.jsx';
 import {onDragOver, onDrop} from './DragEvent.js';
 import Const from './const/Const.js';
 
+/**
+ * SideNav内のMemoGroup、FolderGroupなどを内包するブロック
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const MemoList = () => {
   const dispatch = useDispatch();
   const memos = useSelector((state) => state.memoReducer.memos);
-  const selectedListID = useSelector((state) => state.memoReducer.selected);
+
+  // 選択中のメモID
+  const selectedMemoID = useSelector((state) => state.memoReducer.selected);
 
   // ソートオーダーの設定
   const sortBy = Const.SORT_ORDER.DATE_DOWN;
-
 
   useEffect(() => {
     // 初期化時にソートする
@@ -25,7 +31,7 @@ const MemoList = () => {
     );
 
     // 初期化時に選択状態にあるリストを確認して、存在しない場合は先頭のリストを選択
-    const selectedMemo = memos.find((memo) => memo.id === selectedListID);
+    const selectedMemo = memos.find((memo) => memo.id === selectedMemoID);
     if (!selectedMemo) {
       dispatch(
         selectMemo({
@@ -47,26 +53,19 @@ const MemoList = () => {
         }}
       >
         <div className='Frame__label'>
-          <CreateNewBtn folder='uncategorized' />
+          <CreateNewBtn folderId='uncategorized'/>
         </div>
 
-        <div className={'Folder'} >
+        <div className={'Folder'}>
           <MemoGroup
-            folderName={'uncategorized'}
+            folderId={'uncategorized'}
           />
         </div>
-
       </div>
-
-
       <div>
-        <FolderGroup />
+        <FolderGroup/>
       </div>
-
-
     </div>
-
   );
 };
-
 export default MemoList;

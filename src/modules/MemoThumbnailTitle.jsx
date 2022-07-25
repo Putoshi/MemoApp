@@ -1,27 +1,37 @@
 import React, {useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faTrashCan} from '@fortawesome/free-solid-svg-icons';
-import {updateMemo, deleteMemo, sortMemo, selectMemo} from './store/MemoSlice.js';
+import {updateMemo, sortMemo, selectMemo} from './store/MemoSlice.js';
 import Datetime from '../libs/date/Datetime.js';
 import Const from './const/Const.js';
 import DeleteBtn from './DeleteBtn.jsx';
 
 const MemoThumbnailTitle = (prop) => {
   const dispatch = useDispatch();
-  const selectedListID = useSelector((state) => state.memoReducer.selected);
+
+  const {
+    id, // メモのID
+    updatedAt, // メモの更新日
+    title // メモのタイトル
+  } = prop;
+
+  // 選択中のメモID
+  const selectedMemoID = useSelector((state) => state.memoReducer.selected);
+
+  // メモをIDで索引
   const getMemoById = (id, _memos) => {
     return _memos.find((memo) => memo.id === id);
   };
-  const titleInputElm = useRef('');
+
+  // 編集画面のタイトルInputRef
+  const titleInputElm = useRef(null);
+
   useSelector((state) => {
-    if (prop.memo.id === selectedListID && state.memoReducer.memos.length > 0) {
-      const targetMemo = getMemoById(selectedListID, state.memoReducer.memos);
+    // メモが編集画面で更新された場合にリストの方のタイトルも更新する
+    if (id === selectedMemoID && state.memoReducer.memos.length > 0) {
       if (titleInputElm.current) {
-        titleInputElm.current.value = targetMemo.title;
+        titleInputElm.current.value = getMemoById(selectedMemoID, state.memoReducer.memos);
       }
     }
-
     return state.memoReducer.memos;
   });
 
@@ -71,8 +81,12 @@ const MemoThumbnailTitle = (prop) => {
     return new Datetime(new Date(updatedAt)).toString(Datetime.CALENDAR);
   };
 
-
-  const dragStart = (e, id) => {
+  /**
+   * メモリストのドラッグ開始ハンドラー
+   * @param e イベント
+   * @param id メモのID
+   */
+  const onDragStart = (e, id) => {
     e.dataTransfer.effectAllowed = 'move';
     e.dataTransfer.setData('text/plain', id);
   };
@@ -80,26 +94,25 @@ const MemoThumbnailTitle = (prop) => {
   return (
     <div
       className='MemoThumbnail'
-      onClick={() => onClickList(prop.memo.id)}
-      onDragStart={(e) => dragStart(e, prop.memo.id)}
+      onClick={() => onClickList(id)}
+      onDragStart={(e) => onDragStart(e, id)}
       draggable
     >
       <div
-        className={(selectedListID === prop.memo.id) ? 'MemoThumbnail__container selected' : 'MemoThumbnail__container'}>
+        className={(selectedMemoID === id) ? 'MemoThumbnail__container selected' : 'MemoThumbnail__container'}>
         <div className='MemoThumbnail__inner'>
-          <div className='MemoThumbnail__date'>{formatDateString(prop.memo.updatedAt)}</div>
+          <div className='MemoThumbnail__date'>{formatDateString(updatedAt)}</div>
 
           <div className='MemoThumbnail__title'>
             <input
               ref={titleInputElm}
               type='text'
               maxLength={30}
-              defaultValue={prop.memo.title}
-              onChange={(e) => onChangeTitle(e, prop.memo.id)}
+              defaultValue={title}
+              onChange={(e) => onChangeTitle(e, id)}
               className=''
             />
-            <DeleteBtn id={prop.memo.id} />
-
+            <DeleteBtn id={id} />
           </div>
         </div>
       </div>

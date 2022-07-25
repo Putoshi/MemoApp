@@ -4,12 +4,16 @@ import Const from '../const/Const.js';
 import memoSlice from './MemoSlice.js';
 import {save, load} from 'redux-localstorage-simple';
 
-// rootReducerの準備
+/*
+  Reducerをまとめる
+ */
 const rootReducer = combineReducers({
   memoReducer: memoSlice,
 });
 
-// setup関数
+/*
+  Store Setup関数
+ */
 export const setupStore = () => {
   const middlewares = (getDefaultMiddleware) => getDefaultMiddleware()
     .concat(save({ namespace: Const.LOCALSTORAGE_KEY }))

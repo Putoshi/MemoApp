@@ -4,12 +4,22 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTrashCan} from '@fortawesome/free-solid-svg-icons';
 import {deleteMemo} from './store/MemoSlice.js';
 
+/**
+ * メモの削除ボタン関数
+ * @param prop id:メモのID
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const DeleteBtn = (prop) => {
   const dispatch = useDispatch();
 
+  // メモID
+  const memoId = prop.id;
+
   /**
    * リストの削除ボタンクリック
-   * @param id 削除するリストID
+   * @param e イベント
+   * @param id 削除するメモID
    */
   const onClickDeleteBtn = (e, id) => {
     dispatch(
@@ -24,7 +34,7 @@ const DeleteBtn = (prop) => {
   return (
     <React.Fragment>
       <i className='DeleteBtn__icon'
-        onClick={(e) => onClickDeleteBtn(e, prop.id)}>
+        onClick={(e) => onClickDeleteBtn(e, memoId)}>
         <FontAwesomeIcon icon={faTrashCan}/>
       </i>
     </React.Fragment>

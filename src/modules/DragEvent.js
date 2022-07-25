@@ -1,6 +1,10 @@
 import {updateMemo, selectMemo, sortMemo} from './store/MemoSlice.js';
 import Const from './const/Const.js';
 
+/**
+ * SideNavのメモリストをドラッグした時のイベントハンドラー
+ * @type {{actions: {onDrop: DragEvent.actions.onDrop, onDragOver: DragEvent.actions.onDragOver}}}
+ */
 export const DragEvent = {
   actions: {
     onDragOver: (e) => {

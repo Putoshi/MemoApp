@@ -3,20 +3,16 @@ import Random from '../../libs/Random.js';
 import Const from '../const/Const.js';
 
 export const memoSlice = createSlice({
-
   name: 'memo',
-
   initialState: {
     selected: null,
     memos: [],
   },
-
   reducers: {
-
     /**
      * メモの追加
-     * @param state
-     * @param action
+     * @param state State
+     * @param action Action
      */
     addMemo: (state, action) => {
       const id = Random.getRandomUid();
@@ -39,8 +35,8 @@ export const memoSlice = createSlice({
 
     /**
      * メモの更新
-     * @param state
-     * @param action
+     * @param state State
+     * @param action Action
      */
     updateMemo: (state, action) => {
       const targetMemo = state.memos.find((memo) => memo.id === action.payload.id);
@@ -65,8 +61,8 @@ export const memoSlice = createSlice({
 
     /**
      * メモの削除
-     * @param state
-     * @param action
+     * @param state State
+     * @param action Action
      */
     deleteMemo: (state, action) => {
       const newMemos = state.memos.filter(
@@ -80,15 +76,14 @@ export const memoSlice = createSlice({
 
     /**
      * メモのソート
-     * @param state
-     * @param action
+     * @param state State
+     * @param action Action
      */
     sortMemo: (state, action) => {
       let sortResult = state.memos;
       switch (action.payload.sortBy) {
       // updatedAtの昇順ソート
       case Const.SORT_ORDER.DATE_UP:
-        console.log(Const.SORT_ORDER.DATE_UP);
         sortResult = state.memos.sort((a, b) => {
           return (a.updatedAt < b.updatedAt) ? -1 : 1;
         });
@@ -108,8 +103,8 @@ export const memoSlice = createSlice({
 
     /**
      * 選択したメモのIDを保持
-     * @param state
-     * @param action
+     * @param state State
+     * @param action Action
      */
     selectMemo: (state, action) => {
       state.selected = action.payload.id;

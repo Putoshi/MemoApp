@@ -5,11 +5,22 @@ import {faXmark} from '@fortawesome/free-solid-svg-icons';
 import {updateMemo} from './store/MemoSlice.js';
 import Const from './const/Const.js';
 
-const FolderBtn = (prop) => {
+/**
+ * 編集画面メニューバー内のフォルダー解除ボタン
+ * @param prop id:メモのID、folderId:フォルダのID
+ * @returns {JSX.Element}
+ * @constructor
+ */
+const FolderRemoveBtn = (prop) => {
   const dispatch = useDispatch();
 
+  const {
+    id, // メモのID
+    folderId // フォルダのID
+  } = prop;
+
   /**
-   * リストの削除ボタンクリック
+   * リストの削除ボタンハンドラー
    * @param id 削除するリストID
    */
   const onClickFolderRemoveBtn = (e, id) => {
@@ -23,11 +34,20 @@ const FolderBtn = (prop) => {
     e.stopPropagation();
   };
 
-
+  /**
+   * フォルダの表示名をIDで索引
+   * @param id メモのID
+   * @returns {*} 表示名
+   */
   const getFolderNameById = (id) => {
     return Const.FOLDER_GROUP.find((folder) => folder.id === id).name;
   };
 
+  /**
+   * フォルダのラベル色をIDで索引
+   * @param id メモのID
+   * @returns {{labelColor2: *, labelColor1: *}} ラベル色をObjで返却
+   */
   const getFolderColorById = (id) => {
     const targetFolderData = Const.FOLDER_GROUP.find((folder) => folder.id === id);
     return {
@@ -38,11 +58,11 @@ const FolderBtn = (prop) => {
 
   return (
     <div className='FolderBtn'
-      style={{background: `linear-gradient(${getFolderColorById(prop.folder).labelColor1}, ${getFolderColorById(prop.folder).labelColor2})`}}
+      style={{ background: `linear-gradient(${getFolderColorById(folderId).labelColor1}, ${getFolderColorById(folderId).labelColor2})` }}
     >
-      <p>{getFolderNameById(prop.folder)}</p>
+      <p>{getFolderNameById(folderId)}</p>
       <i className='Folder__icon'
-        onClick={(e) => onClickFolderRemoveBtn(e, prop.id)}
+        onClick={(e) => onClickFolderRemoveBtn(e, id)}
       >
         <FontAwesomeIcon icon={faXmark}/>
       </i>
@@ -50,4 +70,4 @@ const FolderBtn = (prop) => {
   );
 };
 
-export default FolderBtn;
+export default FolderRemoveBtn;

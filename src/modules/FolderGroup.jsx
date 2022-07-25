@@ -5,13 +5,21 @@ import {onDragOver, onDrop} from './DragEvent.js';
 import {useDispatch} from 'react-redux';
 import CreateNewBtn from './CreateNewBtn.jsx';
 
+/**
+ * SideNav内のフォルダグループブロックの関数
+ * @returns {JSX.Element}
+ * @constructor
+ */
 const FolderGroup = () => {
   const dispatch = useDispatch();
+
+  // 未分類以外のフォルダグループのデータを取得
+  const folders = Const.FOLDER_GROUP.filter((folder) => folder.id !== 'uncategorized');
 
   return (
     <div className={'FolderGroup'}>
       {
-        Const.FOLDER_GROUP.filter((folder) => folder.id !== 'uncategorized').map((folder) => (
+        folders.map((folder) => (
           <div
             className={'Folder Frame'}
             key={folder.id}
@@ -28,17 +36,14 @@ const FolderGroup = () => {
             >
               <div className={'FolderLabel__inner'}>
                 <p>{folder.name} 📂</p>
-                <CreateNewBtn folder={folder.id} />
+                <CreateNewBtn folderId={folder.id} />
               </div>
             </div>
-            <MemoGroup folderName={folder.id}></MemoGroup>
-
+            <MemoGroup folderId={folder.id}></MemoGroup>
           </div>
-
         ))
       }
     </div>
-
   );
 };
 
