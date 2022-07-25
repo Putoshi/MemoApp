@@ -1,4 +1,5 @@
-import {updateMemo, selectMemo} from './MemoSlice.js';
+import {updateMemo, selectMemo, sortMemo} from './store/MemoSlice.js';
+import Const from './const/Const.js';
 
 export const DragEvent = {
   actions: {
@@ -8,7 +9,9 @@ export const DragEvent = {
     },
     onDrop: (e, dispatch, folderId) => {
       const memoId = e.dataTransfer.getData('text/plain');
-      console.log(memoId);
+
+      // ソートオーダーの設定
+      const sortBy = Const.SORT_ORDER.DATE_DOWN;
 
       // メモのフォルダを更新
       dispatch(
@@ -22,6 +25,13 @@ export const DragEvent = {
       dispatch(
         selectMemo({
           id: memoId
+        }),
+      );
+
+      // ソート
+      dispatch(
+        sortMemo({
+          sortBy
         }),
       );
 

@@ -1,9 +1,8 @@
 import React, {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faPlus} from '@fortawesome/free-solid-svg-icons';
-import {addMemo, sortMemo, selectMemo} from './MemoSlice.js';
+import {addMemo, sortMemo, selectMemo} from './store/MemoSlice.js';
 import MemoGroup from './MemoGroup.jsx';
+import CreateNewBtn from './CreateNewBtn.jsx';
 import FolderGroup from './FolderGroup.jsx';
 import {onDragOver, onDrop} from './DragEvent.js';
 import Const from './const/Const.js';
@@ -36,46 +35,22 @@ const MemoList = () => {
     }
   }, []);
 
-
-  /**
-   * メモの新規作成ボタンハンドラー
-   */
-  const onClickCreateNewBtn = () => {
-    // メモの新規追加
-    dispatch(
-      addMemo({
-        title: ''
-      }),
-    );
-    // ソート
-    dispatch(
-      sortMemo({
-        sortBy
-      }),
-    );
-  };
-
   return (
     <div className='MemoList'>
 
-      <div className='Frame'>
+      <div className='Frame'
+        onDragOver={(e) => {
+          onDragOver(e);
+        }}
+        onDrop={(e) => {
+          onDrop(e, dispatch, 'uncategorized');
+        }}
+      >
         <div className='Frame__label'>
-          <button className='MemoList__createNewBtn'
-            onClick={() => onClickCreateNewBtn()}
-          >
-            <FontAwesomeIcon icon={faPlus}/>
-          </button>
+          <CreateNewBtn folder='uncategorized' />
         </div>
 
-        <div
-          className={'Folder'}
-          onDragOver={(e) => {
-            onDragOver(e);
-          }}
-          onDrop={(e) => {
-            onDrop(e, dispatch, 'uncategorized');
-          }}
-        >
+        <div className={'Folder'} >
           <MemoGroup
             folderName={'uncategorized'}
           />

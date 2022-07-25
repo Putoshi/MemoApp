@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit';
-import Random from '../libs/Random.js';
-import Const from './const/Const.js';
+import Random from '../../libs/Random.js';
+import Const from '../const/Const.js';
 
 export const memoSlice = createSlice({
 
@@ -27,7 +27,7 @@ export const memoSlice = createSlice({
         id,
         createdAt,
         updatedAt,
-        folder: 'uncategorized',
+        folder: action.payload.folder,
         data: '',
         ...action.payload
       };
@@ -44,15 +44,22 @@ export const memoSlice = createSlice({
      */
     updateMemo: (state, action) => {
       const targetMemo = state.memos.find((memo) => memo.id === action.payload.id);
-      targetMemo.updatedAt = new Date().getTime();
+
+      // フォルダ移動の時に更新日時が変わってしまうとちょっと変なので、時間を更新しない
+      let isFolderUpdate = false;
+
       if (action.payload.title !== undefined) {
         targetMemo.title = action.payload.title;
       }
       if (action.payload.folder !== undefined) {
+        isFolderUpdate = (targetMemo.folder !== action.payload.folder);
         targetMemo.folder = action.payload.folder;
       }
       if (action.payload.data !== undefined) {
         targetMemo.data = action.payload.data;
+      }
+      if (!isFolderUpdate) {
+        targetMemo.updatedAt = new Date().getTime();
       }
     },
 

@@ -3,6 +3,7 @@ import Const from './const/Const.js';
 import MemoGroup from './MemoGroup.jsx';
 import {onDragOver, onDrop} from './DragEvent.js';
 import {useDispatch} from 'react-redux';
+import CreateNewBtn from './CreateNewBtn.jsx';
 
 const FolderGroup = () => {
   const dispatch = useDispatch();
@@ -25,7 +26,10 @@ const FolderGroup = () => {
               className={'FolderLabel'}
               style={{background: `linear-gradient(${folder.labelColor1}, ${folder.labelColor2})`}}
             >
-              <div className={'FolderLabel__inner'}>{folder.name} 📂</div>
+              <div className={'FolderLabel__inner'}>
+                <p>{folder.name} 📂</p>
+                <CreateNewBtn folder={folder.id} />
+              </div>
             </div>
             <MemoGroup folderName={folder.id}></MemoGroup>
 

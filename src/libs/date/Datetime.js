@@ -6,6 +6,8 @@ export default class Datetime {
 
   static CALENDAR = '#{year}/#{month}/#{date}';
 
+  static CALENDAR_TIME = '#{year}/#{month}/#{date}  #{hour}:#{min}:#{sec}';
+
   static JP_TIME = '#{year}年#{month}月#{date}日 #{hour}時#{min}分';
 
   static CLOCK = '#{hour}:#{min}:#{sec}';

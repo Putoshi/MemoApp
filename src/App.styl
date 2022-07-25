@@ -1,7 +1,6 @@
 body,h1,h2,h3,p,span
   color #090909
 
-
 ::selection
   background #ed5230
   color #fff
@@ -25,7 +24,6 @@ input,button,textarea
   max-width 1400px
   min-width 1000px
   min-height 700px
-  background #f7f7f7
   box-shadow 0 10px 25px 0 rgba(0, 0, 0, .2)
   display flex
   justify-content: flex-start
@@ -34,7 +32,7 @@ input,button,textarea
 .SideNav
   //width 320px
   width 30%
-  border-right 1px solid #bdbdbd
+  border-right 1px solid #dfdfdf
   background #fff
   overflow-y auto
   flex-grow 1
@@ -66,7 +64,7 @@ input,button,textarea
 .MemoThumbnail
   cursor pointer
   border-bottom 1px solid #bdbdbd
-  background #fff0e2
+  background #fff5ec
 
   &:hover
     background #fffbf6
@@ -85,18 +83,9 @@ input,button,textarea
   border none !important
   outline none !important
   background #ff6161
-  ////border-radius 0
-  //border-bottom 1px solid #bdbdbd
-
-  //&:active
-  //  outline none
-  //  border none
 
   &:hover
     background #ff7575
-    //outline none
-    //border none
-    //border-bottom 1px solid #bdbdbd
 
 .MemoThumbnail__container
   height: 70px
@@ -105,10 +94,6 @@ input,button,textarea
   font-family: 'YakuHanJP'
   font-style: normal
   font-weight: 300
-  //height 100%
-
-
-
 
 
 .MemoThumbnail__container.selected
@@ -179,7 +164,6 @@ input,button,textarea
 .FolderLabel
   width 100%
   height 50px
-  //border-bottom 1px solid #141414
   display flex
   align-items center
   text-align center
@@ -189,6 +173,18 @@ input,button,textarea
     width 100%
     font-weight bold
     user-select none
+    display flex
+    position relative
+
+    p
+      width 100%
+      line-height 40px
+
+    .MemoList__createNewBtn
+      position absolute
+      top 0
+      right 4px
+
 
 
 
@@ -198,10 +194,13 @@ input,button,textarea
 
 .Editor
   width 70%
+  background #f5f5f5
 
+  @media (prefers-color-scheme: dark) {
+    background #eeeeee
+  }
 
   .Editor__wrapper
-    padding 30px 60px
     height 100%
     box-sizing border-box
 
@@ -211,9 +210,23 @@ input,button,textarea
 
     flex-direction column
 
+
+  .Editor__menu
+    height 72px
+    border-bottom 1px solid #e0e0e0
+
+  .Editor__date
+    font-size 12px
+    text-align left
+    color #868686
+
   .Editor__title
     width 100%
+    padding 30px 60px
+    box-sizing border-box
+
     input
+      font-weight bold
       width 100%
       height 100%
       line-height 60px
@@ -222,18 +235,21 @@ input,button,textarea
       text-align left
       background none
       color #090909
+      border-bottom: solid 1px #e0e0e0;
 
   .Editor__body
     width 100%
     height 100%
-    padding-top 12px
+    padding 12px 60px 0
+    box-sizing border-box
 
     textarea
+
       resize: none
       display table-cell
       vertical-align top
       width 100%
-      height 100%
+      height 95%
       line-height 46px
       font-size 24px
       letter-spacing 2px

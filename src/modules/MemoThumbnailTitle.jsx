@@ -2,7 +2,7 @@ import React, {useRef} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTrashCan} from '@fortawesome/free-solid-svg-icons';
-import {updateMemo, deleteMemo, sortMemo, selectMemo} from './MemoSlice.js';
+import {updateMemo, deleteMemo, sortMemo, selectMemo} from './store/MemoSlice.js';
 import Datetime from '../libs/date/Datetime.js';
 import Const from './const/Const.js';
 
