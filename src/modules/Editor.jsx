@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import Const from './const/Const.js';
 import Datetime from '../libs/date/Datetime.js';
 import {updateMemo, sortMemo} from './store/MemoSlice.js';
+import EditorMenu from './EditorMenu.jsx';
 
 const Editor = () => {
   const dispatch = useDispatch();
@@ -74,7 +75,7 @@ const Editor = () => {
           memos.filter((memo) => memo.id === selectedListID).map((memo) => (
             <div className='Editor__inner' key={memo.id} >
 
-              <div className='Editor__menu'></div>
+              <EditorMenu id={memo.id} folder={memo.folder} />
 
               <div className='Editor__title'>
                 <p className='Editor__date'>{formatDateString(memo.updatedAt)}</p>

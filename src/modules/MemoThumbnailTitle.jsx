@@ -5,6 +5,7 @@ import {faTrashCan} from '@fortawesome/free-solid-svg-icons';
 import {updateMemo, deleteMemo, sortMemo, selectMemo} from './store/MemoSlice.js';
 import Datetime from '../libs/date/Datetime.js';
 import Const from './const/Const.js';
+import DeleteBtn from './DeleteBtn.jsx';
 
 const MemoThumbnailTitle = (prop) => {
   const dispatch = useDispatch();
@@ -13,7 +14,7 @@ const MemoThumbnailTitle = (prop) => {
     return _memos.find((memo) => memo.id === id);
   };
   const titleInputElm = useRef('');
-  const memos = useSelector((state) => {
+  useSelector((state) => {
     if (prop.memo.id === selectedListID && state.memoReducer.memos.length > 0) {
       const targetMemo = getMemoById(selectedListID, state.memoReducer.memos);
       if (titleInputElm.current) {
@@ -39,21 +40,6 @@ const MemoThumbnailTitle = (prop) => {
     );
   };
 
-  /**
-   * リストの削除ボタンクリック
-   * @param id 削除するリストID
-   */
-  const onClickDeleteBtn = (e, id) => {
-    console.log('onClickDeleteBtn');
-    dispatch(
-      deleteMemo({
-        id
-      }),
-    );
-
-    // リストの選択イベントも走ってしまう為、イベントのバブリング停止する
-    e.stopPropagation();
-  };
 
   /**
    * リストのタイトル編集ハンドラー
@@ -92,37 +78,32 @@ const MemoThumbnailTitle = (prop) => {
   };
 
   return (
-    <React.Fragment>
+    <div
+      className='MemoThumbnail'
+      onClick={() => onClickList(prop.memo.id)}
+      onDragStart={(e) => dragStart(e, prop.memo.id)}
+      draggable
+    >
       <div
-        className='MemoThumbnail'
-        onClick={() => onClickList(prop.memo.id)}
-        onDragStart={(e) => dragStart(e, prop.memo.id)}
-        draggable
-      >
-        <div
-          className={(selectedListID === prop.memo.id) ? 'MemoThumbnail__container selected' : 'MemoThumbnail__container'}>
-          <div className='MemoThumbnail__inner'>
-            <div className='MemoThumbnail__date'>{formatDateString(prop.memo.updatedAt)}</div>
+        className={(selectedListID === prop.memo.id) ? 'MemoThumbnail__container selected' : 'MemoThumbnail__container'}>
+        <div className='MemoThumbnail__inner'>
+          <div className='MemoThumbnail__date'>{formatDateString(prop.memo.updatedAt)}</div>
 
-            <div className='MemoThumbnail__title'>
-              <input
-                ref={titleInputElm}
-                type='text'
-                maxLength={30}
-                defaultValue={prop.memo.title}
-                onChange={(e) => onChangeTitle(e, prop.memo.id)}
-                className=''
-              />
-              <i className='MemoThumbnail__title__icon'
-                onClick={(e) => onClickDeleteBtn(e, prop.memo.id)}>
-                <FontAwesomeIcon icon={faTrashCan}/>
-              </i>
+          <div className='MemoThumbnail__title'>
+            <input
+              ref={titleInputElm}
+              type='text'
+              maxLength={30}
+              defaultValue={prop.memo.title}
+              onChange={(e) => onChangeTitle(e, prop.memo.id)}
+              className=''
+            />
+            <DeleteBtn id={prop.memo.id} />
 
-            </div>
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </div>
   );
 };
 

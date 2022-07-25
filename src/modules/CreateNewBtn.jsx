@@ -5,7 +5,7 @@ import {faPlus} from '@fortawesome/free-solid-svg-icons';
 import {addMemo, sortMemo} from './store/MemoSlice.js';
 import Const from './const/Const.js';
 
-const CreateNewBtn = (props) => {
+const CreateNewBtn = (prop) => {
   const dispatch = useDispatch();
 
   // ソートオーダーの設定
@@ -32,14 +32,11 @@ const CreateNewBtn = (props) => {
 
   return (
     <div className='MemoList'>
-
       <button className='MemoList__createNewBtn'
-        onClick={() => onClickCreateNewBtn(props.folder)}
+        onClick={() => onClickCreateNewBtn(prop.folder)}
       >
         <FontAwesomeIcon icon={faPlus}/>
       </button>
-
-
     </div>
 
   );
