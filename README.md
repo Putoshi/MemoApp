@@ -1,11 +1,17 @@
-# Vite React Boilerplate
+# Memo App
 
-Node v16.16
+![Capture](./cap.gif)
 
-NPM 8.11.0
 
 ## Libraries used
 
+- Node
+  - Node v16.16
+  - NPM 8.11.0
+
+
+- Build Tool
+  - Vite
 
 
 - Framework
@@ -15,16 +21,10 @@ NPM 8.11.0
   - redux-logger
 
 
-
-
 - CSS
   - Stylus
   - nib
   - FontAwesome
-
-
-- Build Tool
-  - Vite
 
 
 - Formatter
