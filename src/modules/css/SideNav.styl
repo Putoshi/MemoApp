@@ -1,0 +1,154 @@
+@import "common/css/const.styl"
+
+/// 左側のメモリスト画面
+.SideNav
+  width 30%
+  border-right 1px solid #dfdfdf
+  background #fff
+  overflow-y auto
+  flex-grow 1
+
+  /// タイトルロゴ
+  h1
+    color $PRIMARY_TEXT_COLOR
+    font-size 28px
+    line-height 72px
+    font-weight 400
+    text-align left
+    padding-left 20px
+    font-family $FONT_FAMILY_EN
+
+  .SideNav__inner
+    padding-bottom 52px
+
+/// メモのフォルダ名ラベルとメモリストが一緒になったブロック
+.Frame
+  border-radius 12px
+  border solid 1px #dcdcdc
+  background #e0e0e0
+  margin 0 12px 20px
+  box-shadow 0 4px 12px 0 rgba(0, 0, 0, .2)
+  overflow hidden
+
+  .Frame__label
+    position relative
+    height 40px
+    padding 4px
+
+/// リスト内メモ
+.MemoThumbnail
+  cursor pointer
+  border-bottom 1px solid #bdbdbd
+  background #fff5ec
+
+  &:hover
+    background #fffbf6
+
+  &:last-child
+    border-bottom none
+
+/// リスト内メモ 新規追加ボタン
+.MemoList__createNewBtn
+  float right
+  display block
+  box-sizing content-box
+  border-radius 20px
+  padding 0
+  width 40px
+  height 40px
+  border none !important
+  outline none !important
+  background #ff6161
+
+  &:hover
+    background #ff7575
+
+  svg
+    color #fff
+
+.MemoThumbnail__container
+  height: 70px
+  padding 12px
+  box-sizing border-box
+  font-style: normal
+  font-weight: 300
+
+.MemoThumbnail__container.selected
+  background #fffbf6
+
+.MemoThumbnail__inner
+  position relative
+  height 100%
+
+/// リスト内メモ 日時表示
+.MemoThumbnail__date
+  position absolute
+  top 0
+  left 0
+  font-family $FONT_FAMILY_EN
+  font-weight: 500
+  font-size 11px
+  line-height 22px
+  letter-spacing 1px
+  color $THRDRY_TEXT_COLOR
+  padding-bottom 6px
+  text-align left
+
+/// リスト内メモ タイトル表示
+.MemoThumbnail__title
+  position absolute
+  top 20px
+  left 0
+  width 100%
+  padding-right 20px
+  box-sizing border-box
+
+  input
+    background transparent
+    color $PRIMARY_TEXT_COLOR
+    border none
+    width 100%
+    height 24px
+    text-align left
+    overflow hidden
+    white-space nowrap
+    font-family $FONT_FAMILY_JP
+    font-weight 500
+    font-size 18px
+    text-overflow: ellipsis
+    padding 0
+    box-sizing border-box
+
+  input:focus
+    outline 0
+    border 1px solid #e6b422
+
+
+/// リスト内メモ フォルダラベル
+.FolderLabel
+  width 100%
+  height 50px
+  display flex
+  align-items center
+  text-align center
+  color $SECOUNDRY_TEXT_COLOR
+
+  .FolderLabel__inner
+    width 100%
+    font-weight bold
+    user-select none
+    display flex
+    position relative
+
+    /// リスト内メモ フォルダラベル上のタイトル
+    p
+      font-family $FONT_FAMILY_EN
+      width 100%
+      line-height 40px
+
+    /// リスト内メモ フォルダラベル上の新規追加ボタン
+    .MemoList__createNewBtn
+      position absolute
+      cursor pointer
+      top 0
+      right 4px
