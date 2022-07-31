@@ -12,32 +12,12 @@ const baseConfig = (mode) => {
 
 export const Config = {
   getConfig:(mode) => {
-    let config = {};
-    switch (mode) {
-      case 'develop':
-        config = {
-          env: 'development',
-          ...baseConfig(mode)
-        };
-        break;
-  
-      case 'production':
-        config = {
-          env: 'production',
-          ...baseConfig(mode)
-        };
-        break;
-      
-      default:
-        config = {
-          env: 'none',
-          ...baseConfig(mode)
-        };
-        break;
-    }
-    return config;
+    return {
+      env: mode,
+      ...baseConfig(mode)
+    };
   }
-}
+};
 
 
 export const { getConfig } = Config;
