@@ -4,6 +4,8 @@ import Editor from './modules/Editor.jsx';
 import './App.styl';
 
 const App = () => {
+  console.log(import.meta.env);
+  console.log(ENDPOINT);
   return (
     <div id='MemoApp'>
       <div className='SideNav'>
