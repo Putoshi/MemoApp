@@ -16,6 +16,7 @@ const S3Options = (process.env.TARGET === 's3') ? {
   ID: credential.s3[process.env.MODE].accessKeyId,
   SECRET: credential.s3[process.env.MODE].secretAccessKey,
   BUCKET_NAME: credential.s3[process.env.MODE].bucket,
+  IGNORE_FILES:[ '.DS_Store' ],
   DEPLOY_FOLDER_PATH: distDir,
 } : {};
 
