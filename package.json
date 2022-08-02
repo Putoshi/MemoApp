@@ -12,7 +12,16 @@
     "preview": "cross-env MODE=production node ./tasks/preview.js",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "npm run lint --fix",
-    "lint:format": "prettier --write './src/**/*.{js,jsx,ts,tsx,css,md,json}'"
+    "lint:format": "prettier --write './src/**/*.{js,jsx,ts,tsx,css,md,json}'",
+    "S3upload:develop": "cross-env MODE=develop TARGET=s3 CACHE=none node ./tasks/upload.js",
+    "S3upload:staging": "cross-env MODE=staging TARGET=s3 CACHE=none node ./tasks/upload.js",
+    "S3upload:production": "cross-env MODE=production TARGET=s3 CACHE=none node ./tasks/upload.js",
+    "CFclear:develop": "cross-env MODE=develop TARGET=none CACHE=clear node ./tasks/upload.js",
+    "CFclear:staging": "cross-env MODE=staging TARGET=none CACHE=clear node ./tasks/upload.js",
+    "CFclear:production": "cross-env MODE=production TARGET=none CACHE=clear node ./tasks/upload.js",
+    "deploy:develop": "cross-env MODE=develop TARGET=s3 CACHE=clear node ./tasks/upload.js",
+    "deploy:staging": "cross-env MODE=staging TARGET=s3 CACHE=clear node ./tasks/upload.js",
+    "deploy:production": "cross-env MODE=production TARGET=s3 CACHE=clear node ./tasks/upload.js"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -37,6 +46,7 @@
     "react-redux": "^8.0.2",
     "redux-localstorage-simple": "^2.5.1",
     "redux-logger": "^3.0.6",
+    "simple-s3-deploy": "^1.0.22",
     "stylus": "^0.58.1",
     "vite": "^3.0.4"
   },
