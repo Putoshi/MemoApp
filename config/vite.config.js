@@ -2,6 +2,7 @@ import react from '@vitejs/plugin-react';
 import path from 'path';
 import {getConfig} from './index.js';
 import Datetime from '../tasks/libs/Datetime.js';
+import autoprefixer from "autoprefixer";
 
 
 // GET BUILD CONFIGS
@@ -38,7 +39,15 @@ export const viteConfig = {
   },
   plugins: [react()],
   define: (() => {
-    const _globalDefine = {};
+    const _globalDefine = {
+      css: {
+        postcss: {
+          plugins: [
+            autoprefixer
+          ]
+        }
+      }
+    };
     Object.keys(config.APP_CONFIG).map((key) => {
       _globalDefine[key] = JSON.stringify(config.APP_CONFIG[key]);
     });

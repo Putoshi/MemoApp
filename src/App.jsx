@@ -1,7 +1,7 @@
 import MemoList from './modules/MemoList.jsx';
 import Editor from './modules/Editor.jsx';
 
-import './App.styl';
+import './App.sass';
 
 const App = () => {
   console.log(import.meta.env);

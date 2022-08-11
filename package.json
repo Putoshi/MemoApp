@@ -35,6 +35,7 @@
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
     "@vitejs/plugin-react": "^2.0.0",
+    "autoprefixer": "^10.4.8",
     "cross-env": "^7.0.3",
     "eslint": "^8.20.0",
     "eslint-config-prettier": "^8.5.0",
@@ -46,8 +47,8 @@
     "react-redux": "^8.0.2",
     "redux-localstorage-simple": "^2.5.1",
     "redux-logger": "^3.0.6",
+    "sass": "^1.54.4",
     "simple-s3-deploy": "^1.0.22",
-    "stylus": "^0.58.1",
     "vite": "^3.0.4"
   },
   "volta": {
