@@ -1,0 +1,84 @@
+@import "transform"
+@import "cdn"
+
+=smartphone-init
+  *
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+    -webkit-touch-callout: none
+
+  *:not(input):not(textarea)
+    user-select: none
+
+
+=abs($left: 0, $top: 0, $right: auto, $bottom: auto)
+  position: absolute
+  top: $top
+  left: $left
+  right: $right
+  bottom: $bottom
+
+=clearfix
+  overflow: hidden
+  *zoom: 1
+
+// 縦横中央揃え
+=verticalhorizontalCenter
+  position: absolute
+  top: 50%
+  left: 50%
+  white-space: nowrap
+  +translate(-50%, -50%)
+
+// 縦横中央揃え
+=verticalCenter
+  position: absolute
+  top: 50%
+  white-space: nowrap
+  +translate(0, -50%)
+
+=textOut
+  overflow: hidden
+  text-indent: -9999px
+  white-space: nowrap
+
+// テキストを折り返しせずに・・・をつける
+%text-overflow-ellipsis
+  text-overflow: ellipsis
+  white-space: nowrap
+  overflow: hidden
+  width: 100%
+
+
+// shortcut position absolute
+=abs($left: 0, $top: 0, $right: auto, $bottom: auto)
+  position: absolute
+  top: $top
+  left: $left
+  right: $right
+  bottom: $bottom
+
+
+// transition
+=transit($duration, $delay: 0, $param: all, $easing: ease)
+  transition: $param #{$duration}ms #{$easing} #{$delay}ms
+
+=addquery($type: none, $point1: 0px, $point2: 0px)
+
+  @if $type == min
+    @media screen and (min-width: $point1)
+      @content
+  @else if $type == max
+    @media screen and (max-width: $point1)
+      @content
+  @else
+    @media only screen and (max-device-width: $point2) and (min-width: $point1)
+      @content
+
+    @media only screen and (max-width: $point2) and (min-width: $point1)
+      @content
+
+=assetPath($url)
+
+
+@function assetPath($url)
+  @return url("#{$cdn}#{$url}")

@@ -1,36 +1,51 @@
-//@import './modules/css/SideNav.styl'
-//@import './modules/css/Icon.styl'
-//@import './modules/css/Editor.styl'
-//@import "common/css/common.styl"
-//
-//body,h1,h2,h3,p,span
-//  color $PRIMARY_TEXT_COLOR
-//
-//::selection
-//  background #ed5230
-//  color #fff
-//
-//#root
-//  padding 30px 0
-//  width 100%
-//  margin 0 auto
-//  text-align center
-//
-//input,button,textarea
-//  outline none
-//  border none
-//  &:focus,&:selected,&:hover
-//    outline none
-//    border none
+@import './modules/css/SideNav'
+@import './modules/css/Editor'
+@import './modules/css/Icon'
+@import "common/css/common"
+
+body
+  margin: 0
+  display: flex
+  place-items: center
+  height: 100vh
+
+  #root
+    font-family: $FONT_FAMILY_JP
+    color-scheme: light dark
+    font-synthesis: none
+    text-rendering: optimizeLegibility
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+    -webkit-text-size-adjust: 100%
+
+body,h1,h2,h3,p,span
+  color: $PRIMARY_TEXT_COLOR
+
+::selection
+  background: #ed5230
+  color: #fff
+
+#root
+  padding: 30px 0
+  width: 100%
+  margin: 0 auto
+  text-align: center
+
+input,button,textarea
+  outline: none
+  border: none
+  &:focus,&:hover
+    outline: none
+    border: none
 
 #MemoApp
   position: relative
   margin: 0 auto
   width: 90%
   height: 90vh
-  //max-width: $MAX_WINDOW_WIDTH
-  //min-width: $MIN_WINDOW_WIDTH
-  //min-height: $MIN_WINDOW_HEIGHT
+  max-width: $MAX_WINDOW_WIDTH
+  min-width: $MIN_WINDOW_WIDTH
+  min-height: $MIN_WINDOW_HEIGHT
   box-shadow: 0 10px 25px 0 rgba(0, 0, 0, .2)
   display: flex
   justify-content: flex-start
